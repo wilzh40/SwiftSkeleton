@@ -18,7 +18,6 @@ class CenterViewController: UITableViewController, ConnectionProtocol {
         self.setupLeftMenuButton()
         connectionManager.delegate = self
         ConnectionManager.testNetworking()
-        ConnectionManager.getRedditList("dota2")
         
     }
     func setupLeftMenuButton() {

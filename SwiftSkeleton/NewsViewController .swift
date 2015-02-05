@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 class NewsViewController: CenterViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+    var tableData:NSMutableArray = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ConnectionManager.getRedditList("dota2", limit: 10)
+        
     }
 
 }

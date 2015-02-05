@@ -29,17 +29,23 @@ class ConnectionManager {
         return Static.instance
     }
     
-    class func getRedditList(subreddit:String) {
-
-        let URL = "http://www.reddit.com/" + subreddit + "/.json"
-        Alamofire.request(.GET, URL, parameters: ["limit":"25"])
+    class func getRedditList(subreddit:String, limit:Int?) {
+        var posts:NSMutableArray = []
+        let URL = "http://www.reddit.com/r/" + subreddit + "/.json"
+        Alamofire.request(.GET, URL, parameters: ["limit":"500"])
             .responseSwiftyJSON { (request, response, responseJSON, error) in
                 println(request)
-                println(responseJSON)
+             
+                for (index: String, post: JSON) in responseJSON["data"]["children"] {
+                 //   posts.addObject(post)
+                    println(post["data"]["title"])
+                }
                 if error != nil {
                     println(error)
                 }
+                
         }
+        
     }
     
     class func testNetworking() {

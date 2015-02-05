@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class NewsViewController: CenterViewController, UITableViewDataSource, UITableViewDelegate {
+class NewsViewController: CenterViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()

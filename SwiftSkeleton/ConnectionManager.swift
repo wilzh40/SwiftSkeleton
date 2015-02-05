@@ -29,13 +29,13 @@ class ConnectionManager {
         return Static.instance
     }
     
-    class func getRedditList() {
-        var subreddit = "dota2"
-        let URL = "www.reddit.com/search/" + subreddit + "/hot"
+    class func getRedditList(subreddit:String) {
+
+        let URL = "http://www.reddit.com/" + subreddit + "/.json"
         Alamofire.request(.GET, URL, parameters: ["limit":"25"])
             .responseSwiftyJSON { (request, response, responseJSON, error) in
                 println(request)
-                println(responseJSON["args"])
+                println(responseJSON)
                 if error != nil {
                     println(error)
                 }

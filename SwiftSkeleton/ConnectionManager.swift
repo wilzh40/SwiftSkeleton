@@ -32,13 +32,21 @@ class ConnectionManager {
     class func getRedditList(subreddit:String, limit:Int?) {
         var posts:NSMutableArray = []
         let URL = "http://www.reddit.com/r/" + subreddit + "/.json"
-        Alamofire.request(.GET, URL, parameters: ["limit":"500"])
+        Alamofire.request(.GET, URL, parameters: ["limit":"50"])
             .responseSwiftyJSON { (request, response, responseJSON, error) in
                 println(request)
+                println(responseJSON)
              
-                for (index: String, post: JSON) in responseJSON["data"]["children"] {
+                for (index: String, child: JSON) in responseJSON["data"]["children"] {
                  //   posts.addObject(post)
-                    println(post["data"]["title"])
+                    
+                   // println(child["data"]["title"])
+                    var post = Post()
+                    post.title = child["data"]["title"].string
+                    post.score = child["data"]["score"].int
+                    post.author = child["date"]["author"].string
+                    posts.addObject(post)
+                    
                 }
                 if error != nil {
                     println(error)

@@ -9,4 +9,12 @@
 import Foundation
 
 
-
+class Post : NSObject {
+    var title: String?
+    var comments: NSMutableArray?
+    var score: Int?
+    var author: String?
+    override init () {
+        
+    }
+}

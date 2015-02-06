@@ -99,12 +99,13 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="1mI-P4-HYU" id="wQb-au-dWB"/>
-                            <outlet property="delegate" destination="1mI-P4-HYU" id="ALi-qR-o3I"/>
+                            <outlet property="dataSource" destination="1mI-P4-HYU" id="P9c-UH-894"/>
+                            <outlet property="delegate" destination="1mI-P4-HYU" id="E4d-5A-qSx"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="News" id="dZn-CW-YDF"/>
                     <connections>
+                        <outlet property="PostsTableView" destination="mO6-ml-8gx" id="qZL-ry-M0v"/>
                         <outlet property="searchDisplayController" destination="xLx-fv-bl7" id="ong-OO-Si6"/>
                     </connections>
                 </tableViewController>

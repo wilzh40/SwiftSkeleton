@@ -10,8 +10,10 @@ import UIKit
 class Singleton {
     
     // View Controllers
-    var centerViewControllers:NSMutableArray = []
+    var centerViewControllers: NSMutableArray = []
 
+    // Table Data
+    var posts: NSMutableArray = []
     
     
 

@@ -15,7 +15,8 @@ var apikey : String = "deEjldQkPV5fRpfyTC3L9xQpPe2VeBeS"
 var url : String = "https://www.kimonolabs.com/api/1wq466c8"
 
 
-protocol ConnectionProtocol {
+@objc protocol ConnectionProtocol {
+    optional func didGetPosts()
     
 }
 class ConnectionManager {
@@ -36,9 +37,8 @@ class ConnectionManager {
             .responseSwiftyJSON { (request, response, responseJSON, error) in
                 println(request)
                 println(responseJSON)
-             
+                
                 for (index: String, child: JSON) in responseJSON["data"]["children"] {
-                 //   posts.addObject(post)
                     
                    // println(child["data"]["title"])
                     var post = Post()
@@ -46,6 +46,11 @@ class ConnectionManager {
                     post.score = child["data"]["score"].int
                     post.author = child["date"]["author"].string
                     posts.addObject(post)
+                    
+                    // Add to singleton
+                    Singleton.sharedInstance.posts = posts
+                    // Tell its delegate that the request has been recieved
+                    ConnectionManager.sharedInstance.delegate?.didGetPosts!()
                     
                 }
                 if error != nil {

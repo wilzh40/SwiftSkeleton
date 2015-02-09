@@ -12,25 +12,15 @@ class Singleton {
     // View Controllers
     var centerViewControllers: NSMutableArray = []
     var currentCenterViewController: Int = 0
-    
-    
 
-
-    
      func setupData() {
          let storyBoard = UIStoryboard(name: "Main", bundle: nil)
          let newsVC = storyBoard.instantiateViewControllerWithIdentifier("Center") as UIViewController
          let settingsVC = storyBoard.instantiateViewControllerWithIdentifier("Settings") as UIViewController
         self.centerViewControllers.addObject(newsVC)
         self.centerViewControllers.addObject(settingsVC)
-        
-
-        
 
     }
-    
-    
-    
     
     class var sharedInstance : Singleton {
         struct Static {

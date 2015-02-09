@@ -13,9 +13,10 @@ import AlamofireSwiftyJSON
 // This is my local RESTFUL testing setup using node and express.js, as well as modular databse
 
 
-protocol ConnectionProtocol {
-    
+@objc protocol ConnectionProtocol {
+    optional func didGetData()
 }
+
 class ConnectionManager {
     var delegate : ConnectionProtocol?
     
@@ -39,6 +40,7 @@ class ConnectionManager {
                 if error != nil {
                     println(error)
                 }
+                self.sharedInstance.delegate?.didGetData!()
         }
         
     }

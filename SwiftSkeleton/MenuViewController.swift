@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 class MenuViewController: UITableViewController {
-      let singleton:Singleton = Singleton.sharedInstance
-      var tableData:NSMutableArray = ["Error"]
+    let singleton:Singleton = Singleton.sharedInstance
+    var tableData:NSMutableArray = ["Error"]
  
 
     func setupData() {
@@ -22,8 +22,6 @@ class MenuViewController: UITableViewController {
         super.viewDidLoad()
         self.setupData()
         ConnectionManager.testNetworking()
-       // ConnectionManager.getRedditList()
-        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,23 +40,24 @@ class MenuViewController: UITableViewController {
         
         return cell
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Change the center view controller
         let newCenterVC = singleton.centerViewControllers[indexPath.row] as UIViewController
 
         if indexPath.row != singleton.currentCenterViewController {
-            
-            // Doesn't allow selection of the current VC
-            
+        
+            // Do not allow selection of the current VC
             self.evo_drawerController?.setCenterViewController(newCenterVC, withCloseAnimation: true, completion: nil)
             self.evo_drawerController?.closeDrawerAnimated(true, completion: nil)
             singleton.currentCenterViewController = indexPath.row
 
         }
         self.tableView.reloadData()
-            
     }
 
+    // Visually disable selection of the current VC
+    
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if indexPath.row == singleton.currentCenterViewController {
             return false
@@ -72,12 +71,12 @@ class MenuViewController: UITableViewController {
         }
         return indexPath
     }
+    
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == singleton.currentCenterViewController {
             cell.alpha = 0.4
             cell.backgroundColor = UIColor.grayColor()
         }
-      
     }
     
 }

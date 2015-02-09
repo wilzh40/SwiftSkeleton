@@ -17,37 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Singleton.sharedInstance.setupData()
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+        Singleton.sharedInstance.setupData()
         
+        // Take VCs from Storyboard
         var storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        
         var centerController = storyBoard.instantiateViewControllerWithIdentifier("Center") as UIViewController
-
-        
-    
-        let button = UIBarButtonItem(title: "Super", style: .Plain, target: self, action: Selector("toggleMenu"))
-        centerController.navigationItem.setLeftBarButtonItem(button, animated: true)
-    
         var menu = storyBoard.instantiateViewControllerWithIdentifier("Left") as UIViewController
         
+        // And init them using DrawerController
         var drawerCon = DrawerController(centerViewController: centerController, leftDrawerViewController: menu)
-        drawerCon.navigationController?.navigationItem.setLeftBarButtonItem(button, animated: false)
         drawerCon.openDrawerGestureModeMask = OpenDrawerGestureMode.BezelPanningCenterView
         drawerCon.closeDrawerGestureModeMask = CloseDrawerGestureMode.PanningCenterView
         self.window?.rootViewController = drawerCon
         self.window?.makeKeyAndVisible()
 
-        
-        
-        
         return true
-    }
-    
-    func toggleMenu() {
-        
     }
 
     func applicationWillResignActive(application: UIApplication) {

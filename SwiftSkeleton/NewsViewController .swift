@@ -13,5 +13,10 @@ class NewsViewController: CenterViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    func didGetData() {
+        // Refresh the tableView here
+        println(didGetData)
+        
+    }
 }

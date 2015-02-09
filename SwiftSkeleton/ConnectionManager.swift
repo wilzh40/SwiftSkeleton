@@ -40,7 +40,7 @@ class ConnectionManager {
                 if error != nil {
                     println(error)
                 }
-                self.sharedInstance.delegate?.didGetData!()
+                self.sharedInstance.delegate?.didGetData?()
         }
         
     }
